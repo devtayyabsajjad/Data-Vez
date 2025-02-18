@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState } from "react"
 
-interface FormData {
+export interface FormInputData {
   goal: string
   timeframe: string
   currentStatus: string
@@ -12,12 +12,12 @@ interface FormData {
 }
 
 interface TextInputFormProps {
-  onSubmit: (formData: FormData) => void
+  onSubmit: (formData: FormInputData) => void
   task: "finance" | "health" | "marketing"
 }
 
 export default function TextInputForm({ onSubmit, task }: TextInputFormProps) {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<FormInputData>({
     goal: "",
     timeframe: "",
     currentStatus: "",

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import TextInputForm from "./TextInputForm"
+import TextInputForm, { FormInputData } from "./TextInputForm"
 import DataVisualization from "./DataVisualization"
 import AIInsights from "./AIInsights"
 
@@ -14,7 +14,7 @@ export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(false)
   const [showInsights, setShowInsights] = useState(false)
 
-  const handleSubmit = (formData: FormData) => {
+  const handleSubmit = async (formData: FormInputData) => {
     setIsLoading(true)
     setShowInsights(true)
 
@@ -29,22 +29,20 @@ export default function Dashboard() {
     setChartData(newChartData)
 
     // Fetch AI insights
-    fetch("/api/insights", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ input: JSON.stringify(formData), task }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setAIInsights(data.insights)
+    try {
+      const response = await fetch("/api/insights", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ input: JSON.stringify(formData), task }),
       })
-      .catch((error) => {
-        console.error("Error fetching AI insights:", error)
-        setAIInsights("") // Clear insights to trigger dummy data
-      })
-      .finally(() => {
-        setIsLoading(false)
-      })
+      const data = await response.json()
+      setAIInsights(data.insights)
+    } catch (error) {
+      console.error("Error fetching AI insights:", error)
+      setAIInsights("") // Clear insights to trigger dummy data
+    }
+
+    setIsLoading(false)
   }
 
   return (
