@@ -14,7 +14,7 @@ export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(false)
   const [showInsights, setShowInsights] = useState(false)
 
-  const handleSubmit = async (formData: any) => {
+  const handleSubmit = async (formData: FormData) => {
     setIsLoading(true)
     setShowInsights(true)
 

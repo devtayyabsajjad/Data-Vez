@@ -12,7 +12,7 @@ export default function About() {
         decisions to achieve your goals.
       </p>
       <p className="text-gray-800">
-        Whether you're a business owner, a health enthusiast, or a marketing professional, DataViz Pro has the tools you
+        Whether you&apos;re a business owner, a health enthusiast, or a marketing professional, DataViz Pro has the tools you
         need to succeed.
       </p>
     </div>

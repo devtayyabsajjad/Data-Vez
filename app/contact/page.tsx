@@ -3,7 +3,7 @@ export default function Contact() {
     <div className="bg-white bg-opacity-80 rounded-lg shadow-neon p-8 mt-8">
       <h1 className="text-4xl font-bold mb-6 text-gradient">Contact Us</h1>
       <p className="text-gray-800 mb-4">
-        We'd love to hear from you! If you have any questions, feedback, or need support, please don't hesitate to reach
+        We&apos;d love to hear from you! If you have any questions, feedback, or need support, please don&apos;t hesitate to reach
         out.
       </p>
       <div className="mb-4">
