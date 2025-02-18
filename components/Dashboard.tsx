@@ -14,7 +14,7 @@ export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(false)
   const [showInsights, setShowInsights] = useState(false)
 
-  const handleSubmit = async (formData: FormData) => {
+  const handleSubmit = (formData: FormData) => {
     setIsLoading(true)
     setShowInsights(true)
 
@@ -29,20 +29,22 @@ export default function Dashboard() {
     setChartData(newChartData)
 
     // Fetch AI insights
-    try {
-      const response = await fetch("/api/insights", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ input: JSON.stringify(formData), task }),
+    fetch("/api/insights", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ input: JSON.stringify(formData), task }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setAIInsights(data.insights)
       })
-      const data = await response.json()
-      setAIInsights(data.insights)
-    } catch (error) {
-      console.error("Error fetching AI insights:", error)
-      setAIInsights("") // Clear insights to trigger dummy data
-    }
-
-    setIsLoading(false)
+      .catch((error) => {
+        console.error("Error fetching AI insights:", error)
+        setAIInsights("") // Clear insights to trigger dummy data
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
 
   return (
