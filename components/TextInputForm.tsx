@@ -4,13 +4,20 @@ import type React from "react"
 
 import { useState } from "react"
 
+interface FormData {
+  goal: string
+  timeframe: string
+  currentStatus: string
+  additionalInfo: string
+}
+
 interface TextInputFormProps {
-  onSubmit: (formData: any) => void
+  onSubmit: (formData: FormData) => void
   task: "finance" | "health" | "marketing"
 }
 
 export default function TextInputForm({ onSubmit, task }: TextInputFormProps) {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     goal: "",
     timeframe: "",
     currentStatus: "",
