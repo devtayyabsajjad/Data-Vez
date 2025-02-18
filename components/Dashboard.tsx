@@ -9,7 +9,7 @@ type Task = "finance" | "health" | "marketing"
 
 export default function Dashboard() {
   const [task, setTask] = useState<Task>("finance")
-  const [chartData, setChartData] = useState([])
+  const [chartData, setChartData] = useState<{ name: string; value: number }[]>([])
   const [aiInsights, setAIInsights] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [showInsights, setShowInsights] = useState(false)
@@ -19,12 +19,12 @@ export default function Dashboard() {
     setShowInsights(true)
 
     // Mock chart data generation (replace with actual data processing logic)
-    const newChartData = [
-      { name: "Jan", value: Math.floor(Math.random() * 1000) },
-      { name: "Feb", value: Math.floor(Math.random() * 1000) },
-      { name: "Mar", value: Math.floor(Math.random() * 1000) },
-      { name: "Apr", value: Math.floor(Math.random() * 1000) },
-      { name: "May", value: Math.floor(Math.random() * 1000) },
+    const newChartData: { name: string; value: number }[] = [
+      { name: "Mon", value: Math.floor(Math.random() * 1000) },
+      { name: "Tue", value: Math.floor(Math.random() * 1000) },
+      { name: "Wed", value: Math.floor(Math.random() * 1000) },
+      { name: "Thu", value: Math.floor(Math.random() * 1000) },
+      { name: "Fri", value: Math.floor(Math.random() * 1000) },
     ]
     setChartData(newChartData)
 
